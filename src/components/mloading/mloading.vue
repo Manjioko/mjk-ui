@@ -1,7 +1,7 @@
 <template>
-  <div id="loading" v-if="mIsLoading ? mIsLoading : false">
-      <div class="mjk-loading" :style="mStyle">
-        <div class="anBox" v-if="mBoxShow !== undefined && mBoxShow !== null ? mBoxShow : true">
+  <div id="loading" v-if="sIsLoading ? sIsLoading : false">
+      <div class="s-loading" :style="sStyle">
+        <div class="anBox" v-if="sBoxShow !== undefined && sBoxShow !== null ? sBoxShow : true">
           <div class="anBoxChild" v-for="key in 4" :key="key"></div>
         </div>
         <slot></slot>
@@ -11,11 +11,11 @@
 
 <script>
 export default {
-  name: 'loading',
+  name: 's-loading',
   props: {
-    mIsLoading:Boolean,
-    mStyle: Object,
-    mBoxShow: {
+    sIsLoading:Boolean,
+    sStyle: Object,
+    sBoxShow: {
       type: Boolean,
       default: true
     }
@@ -25,7 +25,7 @@ export default {
     }
   },
   mounted() {
-    console.log('====================='+this.mBoxShow)
+    // console.log('====================='+this.mBoxShow)
   }
 }
 </script>
@@ -35,7 +35,7 @@ body{
     padding: 0;
     margin: 0;
 }
-.mjk-loading {
+.s-loading {
     position: fixed;
     top: 0;
     right: 0;

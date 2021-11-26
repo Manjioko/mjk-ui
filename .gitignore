@@ -5,6 +5,9 @@ node_modules
 # public
 # src
 # mjkui-0.1.0.tgz
+# vue.config.js
+# babel.config.js
+# .browserslistrc
 
 # local env files
 .env.local

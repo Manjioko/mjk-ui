@@ -5176,7 +5176,7 @@ mixin-deep@^1.2.0:
 
 mjkui@./mjkui-0.1.0.tgz:
   version "0.1.0"
-  resolved "./mjkui-0.1.0.tgz#95fc8a280de9eb2e40323ca1b21aa394648c47d4"
+  resolved "./mjkui-0.1.0.tgz#29141771348562c50499a6481e20de18cc5006a2"
   dependencies:
     core-js "^3.6.5"
     mjkui "./mjkui-0.1.0.tgz"

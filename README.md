@@ -1,2 +1,2 @@
-# mjkui
-#### mjk-ui 是一个vue UI 库
+# swallow-ui
+#### swallow-ui 是一个vue UI 库

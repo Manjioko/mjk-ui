@@ -1,18 +1,17 @@
 {
-  "name": "mjkui",
+  "name": "swallow-ui",
   "version": "0.1.0",
   "author": "manjioko",
   "license": "MIT",
   "private": false,
-  "main": "./dist/mjkui.umd.js",
+  "main": "./lib/swallow.umd.min.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "buildcom": "vue-cli-service build --target lib --name mjkui ./src/index.js"
+    "buildcom": "vue-cli-service build --target lib --name swallow ./src/index.js"
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "mjkui": "./mjkui-0.1.0.tgz",
     "vue": "^2.6.11"
   },
   "devDependencies": {
