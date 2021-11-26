@@ -2,6 +2,9 @@
 node_modules
 /dist
 
+# public
+# src
+# mjkui-0.1.0.tgz
 
 # local env files
 .env.local

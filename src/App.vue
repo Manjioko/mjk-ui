@@ -1,17 +1,19 @@
 <template>
   <div id="app">
+    <loading :mIsLoading="true"/>
     <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
-
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+// import Mloading from './components/mloading/mloading.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HelloWorld,
+    // Mloading
   }
 }
 </script>
