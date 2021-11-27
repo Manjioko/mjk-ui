@@ -1,7 +1,7 @@
-import mloading from './components/mloading/mloading.vue'
+import sloading from './components/sloading/sloading.vue'
 
 const components = [
-    mloading
+    sloading
 ]
 
 const install = function(vue,opts={}) {
