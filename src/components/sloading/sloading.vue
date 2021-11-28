@@ -24,9 +24,7 @@ export default {
     return {
     }
   },
-  mounted() {
-    // console.log('====================='+this.mBoxShow)
-  }
+  mounted() {}
 }
 </script>
 
@@ -44,6 +42,7 @@ body{
     background: rgba(66, 66, 66, 0.7);
     width: 100%;
     height: 100%;
+    z-index: 9999;
     /* opacity: 0.5; */
 }
 .anBox {

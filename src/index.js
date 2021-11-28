@@ -1,12 +1,14 @@
 import sloading from './components/sloading/sloading.vue'
+import schatbox from './components/schatbox/schatbox.vue'
 
 const components = [
-    sloading
+    sloading,
+    schatbox
 ]
 
 const install = function(vue,opts={}) {
     components.map(component => {
-        console.log('component name is ' + component.name)
+        // console.log('component name is ' + component.name)
         vue.component(component.name, component)
     })
 }

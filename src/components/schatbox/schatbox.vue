@@ -32,6 +32,7 @@ export default {
   data() {
     return {};
   },
+  methods: {},
   mounted() {},
 };
 </script>
@@ -45,7 +46,7 @@ export default {
 }
 @keyframes s-chatboxkeyframe {
   from {
-    transform: scale(1.3) rotate(00deg);
+    transform: scale(1.3) rotate(0deg);
   }
   20% {
     transform: scale(1) rotate(30deg);
@@ -62,13 +63,14 @@ export default {
 }
 
 .s-chatbox-other {
-  position: absolute;
-  left: 12px;
+  /* position: absolute;
+  left: 12px; */
   background-color: #f7f7f7;
+  margin-left: 12px;
 }
 .s-chatbox-self {
-  position: absolute;
-  right: 12px;
+  /* position: absolute;
+  right: 12px; */
   background-color: aquamarine;
 }
 .s-chatbox-content {
@@ -89,7 +91,7 @@ export default {
   height: 0;
   position: absolute;
   top: 12px;
-  right: 0;
+  /* right: 0; */
   border-top: 10px solid transparent;
   border-left: 12px solid aquamarine;
   border-bottom: 10px solid transparent;
@@ -97,7 +99,7 @@ export default {
 .s-chatbox-start {
   position: absolute;
   top: 12px;
-  left: 0;
+  /* left: 0; */
   width: 0;
   height: 0;
   border-top: 10px solid transparent;
