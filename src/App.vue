@@ -5,13 +5,14 @@
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <!-- <savatar sSrc='https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg' /> -->
-    <stextarea />
-    <stextarea />
+    <stextarea :sLimit="true"><div>hello world</div></stextarea>
+    <!-- <stextarea /> -->
+    <!-- <div :style="{width:'600px',height:'600px',background:'blue'}"></div> -->
   </div>
 </template>
 <script>
 
-import stextarea from "./components/stextarea/stextarea.vue";
+import stextarea from "./components/movediv/movediv.vue";
 
 export default {
   name: "App",
