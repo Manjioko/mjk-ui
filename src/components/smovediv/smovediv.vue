@@ -1,7 +1,6 @@
 <template>
   <div
     class="s-movediv"
-    @mousedown="handleDrage"
     :style="{
       width: sWidth,
       height: sHeight,
@@ -9,30 +8,25 @@
       left: left,
       top: top,
     }"
-    :id="'s_move_div_box_default' + getTime"
     ref="s_move_div_box"
   >
     <div
       class="s-movediv-top"
-      :id="'s_move_div_box_top_' + getTime"
       ref="s_move_div_box_top"
     ></div>
     <div
       class="s-movediv-right"
-      :id="'s_move_div_box_right_' + getTime"
       ref="s_move_div_box_right"
     ></div>
     <div
       class="s-movediv-bottom"
-      :id="'s_move_div_box_bottom_' + getTime"
       ref="s_move_div_box_bottom"
     ></div>
     <div
       class="s-movediv-left"
-      :id="'s_move_div_box_left_' + getTime"
       ref="s_move_div_box_left"
     ></div>
-    <slot></slot>
+    <slot ref="slotref"></slot>
   </div>
 </template>
 
@@ -61,6 +55,8 @@ export default {
   },
   data() {
     return {
+      // 元素ref
+      getRef:'',
       // 用于定位的坐标
       left: 0,
       top: 0,
@@ -73,9 +69,6 @@ export default {
       afterLeft: 0,
       afterTop: 0,
 
-      // id
-      id: "",
-
       // 元素初始化宽高
       originWidth: 400,
       originHeight: 400,
@@ -84,65 +77,31 @@ export default {
       getTime: new Date().getTime() + Math.floor(Math.random() * 99999),
 
       initLeft: 0,
-      initTop: 0
+      initTop: 0,
     };
   },
   methods: {
-    handleId(tg) {
-      if (!tg.id || !tg.id.includes(this.getTime)) {
+    handleRef(tg) {
+      if (!tg.getAttribute('class')?.includes('s-movediv')) {
         if (tg.parentNode) {
-          if (tg.parentNode.id && tg.parentNode.id.includes(this.getTime))
-            return tg.parentNode.id;
-          this.handleId(tg.parentNode);
+          let parent = tg.parentNode;
+          if(parent.getAttribute('class')?.includes('s-movediv')) {
+            return parent
+          }
+          this.handleRef(parent)
         }
       }
-      return tg.id
-    },
-    // 点击鼠标
-    handleDrage(event) {
-      event.preventDefault();
-      // 获取id
-      this.id = this.handleId(event.target)
-
-      // 获取id相应的父节点,主要的作用就是要找 id="s_move_div_box_default" 这个元素
-      this.target = event.currentTarget.parentNode;
-
-      // 设置move_div的相对宽高
-      this.originWidth = parseInt(event.target.parentNode.offsetWidth);
-      this.originHeight = parseInt(event.target.parentNode.offsetHeight);
-
-      // 释放移动事件
-      this.dragable = true;
-
-      // 保存开始移动前的 X Y轴坐标,主要作用是后面的事件可以根据移动前的坐标
-      // 判断出目标移动的距离
-      this.beforeLeft = event.pageX;
-      this.beforeTop = event.pageY;
+      return tg;
     },
     handleDefault(event) {
       // 元素当前的坐标
-      let topHeight = this.initTop + parseInt(this.afterTop) + event.pageY - this.beforeTop;
-      let leftWidth = this.initLeft + parseInt(this.afterLeft) + event.pageX - this.beforeLeft;
-
-      //有初始化top
-      // if(this.initTop) {
-      //   topHeight = this.initTop;
-      //   this.initTop = null;
-      // } else {
-      //   topHeight = parseInt(this.afterTop) + event.pageY - this.beforeTop;
-      // }
-
-      // // 有初始化left
-      // if(this.initLeft) {
-      //   leftWidth = this.initLeft;
-      //   this.initLeft = null;
-      // } else {
-      //   leftWidth = parseInt(this.afterLeft) + event.pageX - this.beforeLeft;
-      // }
-
-      // console.log(topHeight)
-      // console.log(this.beforeTop)
-      
+      let topHeight =
+        this.initTop + parseInt(this.afterTop) + event.pageY - this.beforeTop;
+      let leftWidth =
+        this.initLeft +
+        parseInt(this.afterLeft) +
+        event.pageX -
+        this.beforeLeft;
 
       // 元素的父级宽高
       let parentHeight = this.target.offsetHeight;
@@ -153,14 +112,21 @@ export default {
       let offsetLeft = this.target.offsetLeft;
 
       // 元素本身的宽高
-      let elHeight = document.getElementById(this.id).offsetHeight;
-      let elWidth = document.getElementById(this.id).offsetWidth;
+      // let elHeight = document.getElementById(this.id).offsetHeight;
+      // let elWidth = document.getElementById(this.id).offsetWidth;
+      let elHeight = this.getRef.offsetHeight;
+      let elWidth = this.getRef.offsetWidth;
+
 
       // 元素可以移动的最大范围
       let refsLeft = this.$refs.s_move_div_box.parentNode.offsetLeft;
       let refsTop = this.$refs.s_move_div_box.parentNode.offsetTop;
-      let maxHeight = this.sLimit? parentHeight - elHeight + refsTop : parentHeight - elHeight;
-      let maxWidth = this.sLimit ? parentHeight - elHeight + refsLeft : parentHeight - elHeight;
+      let maxHeight = this.sLimit
+        ? parentHeight - elHeight + refsTop
+        : parentHeight - elHeight;
+      let maxWidth = this.sLimit
+        ? parentHeight - elHeight + refsLeft
+        : parentHeight - elHeight;
 
       // 父元素是否存在大小并且大小超过元素本身的大小
       let isHasSize =
@@ -178,23 +144,29 @@ export default {
           } else if (topHeight < offsetTop) {
             this.top = 0 + offsetTop + "px";
           } else {
-            this.top = topHeight  + "px";
+            this.top = topHeight + "px";
           }
 
           if (leftWidth > maxWidth) {
-            this.left = maxWidth+ "px";
+            this.left = maxWidth + "px";
           } else if (leftWidth < offsetLeft) {
-            this.left = 0 + offsetLeft + "px" 
+            this.left = 0 + offsetLeft + "px";
           } else {
             this.left = leftWidth + "px";
           }
-          this.$emit("sCoor",{top: parseInt(this.top), left: parseInt(this.left)})
+          this.$emit("sCoor", {
+            top: parseInt(this.top),
+            left: parseInt(this.left),
+          });
         }
       } else {
         // 如果默认情况下,move_box移动范围不受限制
         this.top = topHeight + "px";
         this.left = leftWidth + "px";
-        this.$emit("sCoor",{top: parseInt(this.top), left: parseInt(this.left)})
+        this.$emit("sCoor", {
+          top: parseInt(this.top),
+          left: parseInt(this.left),
+        });
       }
     },
     handleMove_box_top(event) {
@@ -256,18 +228,43 @@ export default {
       this.$refs.s_move_div_box.style.border = "none";
     }
     // 设置top
-    if(this.sTop) {
-      this.top = this.sTop + 'px';
+    if (this.sTop) {
+      this.top = this.sTop + "px";
       this.initTop = this.sTop;
     }
     // 设置left
-    if(this.sLeft) {
-      this.left = this.sLeft + 'px';
+    if (this.sLeft) {
+      this.left = this.sLeft + "px";
       this.initLeft = this.sLeft;
     }
 
     // 组件挂载后也要发送一次坐标
-    this.$emit("sCoor",{top: parseInt(this.top), left: parseInt(this.left)})
+    this.$emit("sCoor", { top: parseInt(this.top), left: parseInt(this.left) });
+
+    this.$refs.s_move_div_box.addEventListener(
+      "mousedown",
+      (event) => {
+        event.preventDefault();
+        // 获取ref
+        this.getRef = this.handleRef(event.target);
+
+        // 获取id相应的父节点
+        this.target = event.currentTarget.parentNode;
+
+        // 设置move_div的相对宽高
+        this.originWidth = parseInt(event.target.parentNode.offsetWidth);
+        this.originHeight = parseInt(event.target.parentNode.offsetHeight);
+
+        // 释放移动事件
+        this.dragable = true;
+
+        // 保存开始移动前的 X Y轴坐标,主要作用是后面的事件可以根据移动前的坐标
+        // 判断出目标移动的距离
+        this.beforeLeft = event.pageX;
+        this.beforeTop = event.pageY;
+      },
+      true
+    );
 
     // 松开鼠标
     document.addEventListener("mouseup", (event) => {
@@ -291,18 +288,18 @@ export default {
     document.addEventListener("mousemove", (event) => {
       if (this.dragable) {
         // 主体move_div,只负责移动
-        if (this.id?.includes("s_move_div_box_default")) {
+        if (this.getRef === this.$refs.s_move_div_box) {
           this.handleDefault(event);
-        } else if (this.id?.includes("s_move_div_box_top")) {
+        } else if (this.getRef === this.$refs.s_move_div_box_top) {
           // move_div的顶部栏
           this.handleMove_box_top(event);
-        } else if (this.id?.includes("s_move_div_box_right")) {
+        } else if (this.getRef === this.$refs.s_move_div_box_right) {
           // move_div的右侧边栏
           this.handleMove_box_right(event);
-        } else if (this.id?.includes("s_move_div_box_bottom")) {
+        } else if (this.getRef === this.$refs.s_move_div_box_bottom) {
           // move_div的底部栏
           this.handleMove_box_bottom(event);
-        } else if (this.id?.includes("s_move_div_box_left")) {
+        } else if (this.getRef === this.$refs.s_move_div_box_left) {
           // move_div 的左侧边栏
           this.handleMove_box_left(event);
         }
