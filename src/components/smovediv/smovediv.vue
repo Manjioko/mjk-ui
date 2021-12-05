@@ -10,22 +10,10 @@
     }"
     ref="s_move_div_box"
   >
-    <div
-      class="s-movediv-top"
-      ref="s_move_div_box_top"
-    ></div>
-    <div
-      class="s-movediv-right"
-      ref="s_move_div_box_right"
-    ></div>
-    <div
-      class="s-movediv-bottom"
-      ref="s_move_div_box_bottom"
-    ></div>
-    <div
-      class="s-movediv-left"
-      ref="s_move_div_box_left"
-    ></div>
+    <div class="s-movediv-top" ref="s_move_div_box_top"></div>
+    <div class="s-movediv-right" ref="s_move_div_box_right"></div>
+    <div class="s-movediv-bottom" ref="s_move_div_box_bottom"></div>
+    <div class="s-movediv-left" ref="s_move_div_box_left"></div>
     <slot ref="slotref"></slot>
   </div>
 </template>
@@ -56,7 +44,7 @@ export default {
   data() {
     return {
       // 元素ref
-      getRef:'',
+      getRef: "",
       // 用于定位的坐标
       left: 0,
       top: 0,
@@ -82,16 +70,18 @@ export default {
   },
   methods: {
     handleRef(tg) {
-      if (!tg.getAttribute('class')?.includes('s-movediv')) {
-        if (tg.parentNode) {
-          let parent = tg.parentNode;
-          if(parent.getAttribute('class')?.includes('s-movediv')) {
-            return parent
-          }
-          this.handleRef(parent)
+      const refArr = [
+        this.$refs.s_move_div_box_top,
+        this.$refs.s_move_div_box_right,
+        this.$refs.s_move_div_box_bottom,
+        this.$refs.s_move_div_box_left,
+      ];
+      for (const ref of refArr) {
+        if (tg === ref) {
+          return ref;
         }
       }
-      return tg;
+      return this.$refs.s_move_div_box;
     },
     handleDefault(event) {
       // 元素当前的坐标
@@ -116,7 +106,6 @@ export default {
       // let elWidth = document.getElementById(this.id).offsetWidth;
       let elHeight = this.getRef.offsetHeight;
       let elWidth = this.getRef.offsetWidth;
-
 
       // 元素可以移动的最大范围
       let refsLeft = this.$refs.s_move_div_box.parentNode.offsetLeft;
@@ -241,30 +230,27 @@ export default {
     // 组件挂载后也要发送一次坐标
     this.$emit("sCoor", { top: parseInt(this.top), left: parseInt(this.left) });
 
-    this.$refs.s_move_div_box.addEventListener(
-      "mousedown",
-      (event) => {
-        event.preventDefault();
-        // 获取ref
-        this.getRef = this.handleRef(event.target);
+    this.$refs.s_move_div_box.addEventListener("mousedown", (event) => {
+      event.preventDefault();
+      // 获取ref
+      // const refTem = this.handleRef(event.target);
+      this.getRef = this.handleRef(event.target);
 
-        // 获取id相应的父节点
-        this.target = event.currentTarget.parentNode;
+      // 获取id相应的父节点
+      this.target = event.currentTarget.parentNode;
 
-        // 设置move_div的相对宽高
-        this.originWidth = parseInt(event.target.parentNode.offsetWidth);
-        this.originHeight = parseInt(event.target.parentNode.offsetHeight);
+      // 设置move_div的相对宽高
+      this.originWidth = parseInt(event.target.parentNode.offsetWidth);
+      this.originHeight = parseInt(event.target.parentNode.offsetHeight);
 
-        // 释放移动事件
-        this.dragable = true;
+      // 释放移动事件
+      this.dragable = true;
 
-        // 保存开始移动前的 X Y轴坐标,主要作用是后面的事件可以根据移动前的坐标
-        // 判断出目标移动的距离
-        this.beforeLeft = event.pageX;
-        this.beforeTop = event.pageY;
-      },
-      true
-    );
+      // 保存开始移动前的 X Y轴坐标,主要作用是后面的事件可以根据移动前的坐标
+      // 判断出目标移动的距离
+      this.beforeLeft = event.pageX;
+      this.beforeTop = event.pageY;
+    });
 
     // 松开鼠标
     document.addEventListener("mouseup", (event) => {
