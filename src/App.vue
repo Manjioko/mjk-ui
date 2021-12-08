@@ -5,12 +5,9 @@
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <!-- <savatar sSrc='https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg' /> -->
-    <div :style="{width:'400px',height:'400px',marginLeft:'100px'}">
-      <stextarea :sLimit="true" :sTop="300"><div :style="{width:'100%',height:'100%',background:'blue'}"></div></stextarea>
-    </div>
-    <div >
-      <stextarea :sTop="400" :sLeft="400"><div :style="{width:'100%',height:'100%',background:'gray'}"></div></stextarea>
-    </div>
+
+    <sinput sType="text" @sValue="e => value = e" sText="用户名" />
+    <h1>{{value}}</h1>
     
     
     <!-- <stextarea :sLimit="true"><div>hello world</div></stextarea>
@@ -20,17 +17,17 @@
   </div>
 </template>
 <script>
-
-import stextarea from "./components/smovediv/smovediv.vue";
+import sinput from './components/sinput/sinput.vue'
 
 export default {
   name: "App",
   components: {
-    stextarea,
+    sinput
   },
-  methods: {
-    handleCor(e) {
-      console.log(e)
+  methods: {},
+  data() {
+    return {
+      value: ''
     }
   },
   mounted() {},
