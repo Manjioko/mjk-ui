@@ -122,3 +122,25 @@ Vue.use(swallowUi);
     </div>
 </template>
 ```
+
+
+#### (5) s-input组件: 聊天框
+- 组件名称: s-input
+- 组件参数:
+    - sType(String) 默认值为 `password` s-input类型选择
+    - sText(String)  默认值为 `''` s-input的左侧字符串值
+    - sPlaceholder(String) 默认值为 `''` s-input的placeholder值
+    - @sValue(function) 接收s-input传输回来的值
+- 列式
+```html
+<template>
+    <div>
+      <s-input
+        sType="text"
+        sText="帐号"
+        sPlaceholder="请输入..."
+        @sValue="v => console.log(v)"
+       />
+    </div>
+</template>
+```
