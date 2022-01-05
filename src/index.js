@@ -2,12 +2,14 @@ import sloading from './components/sloading/sloading.vue'
 import schatbox from './components/schatbox/schatbox.vue'
 import smovediv from './components/smovediv/smovediv.vue'
 import sinput from './components/sinput/sinput.vue'
+import savatar from './components/savatar/savatar.vue'
 
 const components = [
     sloading,
     schatbox,
     smovediv,
     sinput,
+    savatar,
 ]
 
 const install = function(vue,opts={}) {
