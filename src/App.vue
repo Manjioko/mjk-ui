@@ -6,8 +6,8 @@
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <!-- <savatar sSrc='https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg' /> -->
 
-    <sinput sType="text" @sValue="e => value = e" sText="用户名" />
-    <h1>{{value}}</h1>
+    <!-- <sinput sType="text" @sValue="e => value = e" sText="用户名" /> -->
+    <!-- <h1>{{value}}</h1> -->
     <salter sMsg="删除我吗??" @sNo="cancelHandle" @sYes="successHandle"/>
     
     
