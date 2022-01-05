@@ -8,12 +8,12 @@
         </div>
         <div>
           <span
-            ><button @click="cancelHandle" class="s-alter-btn-cancel">
+            ><button @click="cancelHandle" @touchstart="() => {}" class="s-alter-btn-cancel">
               取消
             </button></span
           >
           <span
-            ><button @click="successHandle" class="s-alter-btn-success">
+            ><button @click="successHandle" @touchstart="() => {}"  class="s-alter-btn-success">
               确定
             </button></span
           >
@@ -73,8 +73,8 @@ body {
   left: 0;
   bottom: 0;
   right: 0;
-  width: 55vw;
-  height: 15vh;
+  width: 90vw;
+  height: 23vh;
   background: white;
   margin: auto;
   border-radius: 10px;
@@ -90,10 +90,10 @@ body {
   padding: 10px;
 }
 .s-alter-btn-cancel {
-  width: 23vw;
+  width: 38vw;
   outline: none;
   border: none;
-  height: 4vh;
+  height: 7vh;
   position: absolute;
   left: 10px;
   bottom: 10px;
@@ -101,12 +101,15 @@ body {
   box-shadow: 1px 1px 2px 0px rgb(100 95 95);
   background: #f9f9f9;
   font-size: 18px;
+  color: #474343;
+  user-select: none;
+  -webkit-tap-highlight-color:rgba(0,0,0,0)
 }
 .s-alter-btn-success {
-  width: 23vw;
+  width: 38vw;
   outline: none;
   border: none;
-  height: 4vh;
+  height: 7vh;
   position: absolute;
   right: 10px;
   bottom: 10px;
@@ -114,11 +117,14 @@ body {
   box-shadow: 1px 1px 2px 0px rgb(100 95 95);
   background: #f9f9f9;
   font-size: 18px;
+  color: rgb(238, 51, 51);
+  user-select: none;
+  -webkit-tap-highlight-color:rgba(0,0,0,0)
 }
 .s-alter-btn-success:active {
-    background: rgba(125, 211, 125, 0.678);
+    background: rgba(224, 99, 99, 0.74);
 }
 .s-alter-btn-cancel:active {
-    background: rgba(224, 99, 99, 0.74);
+    background: rgba(125, 211, 125, 0.678);
 }
 </style>

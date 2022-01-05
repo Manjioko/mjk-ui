@@ -7216,6 +7216,15 @@ swallow-ui@^0.1.7:
     core-js "^3.6.5"
     vue "^2.6.11"
 
+swallow-ui@^0.1.8:
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/swallow-ui/-/swallow-ui-0.1.8.tgz#e07be509225e16b1954fb39f84091ee74285a6a0"
+  integrity sha512-Kqq1xtqo4V4DysztN0CUjWBZGM4A7BPmpHfX42kU67DVXoe31TcXYKf2AlcHObDSHoilj+Hq5PlrkqNTGiu4Jw==
+  dependencies:
+    core-js "^3.6.5"
+    swallow-ui "^0.1.7"
+    vue "^2.6.11"
+
 tapable@^1.0.0, tapable@^1.1.3:
   version "1.1.3"
   resolved "https://registry.nlark.com/tapable/download/tapable-1.1.3.tgz#a1fccc06b58db61fd7a45da2da44f5f3a3e67ba2"
