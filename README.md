@@ -144,3 +144,22 @@ Vue.use(swallowUi);
     </div>
 </template>
 ```
+
+#### (5) s-alter组件: 消息通知栏
+- 组件名称: s-alter
+- 组件参数:
+    - sMsg(String) 默认值为 ''
+    - @sYes(function) 接收点击s-alter组件确定按钮时传输回来的值,(true)
+    - @sNo(function) 接收点击s-alter组件取消按钮时传输回来的值,(false)
+- 列式
+```html
+<template>
+    <div>
+      <s-alter
+        sMsg="xxxxxx"
+        @sYes="v => console.log(v)"
+        @sNo="v => console.log(v)"
+       />
+    </div>
+</template>
+```

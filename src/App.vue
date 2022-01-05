@@ -8,6 +8,7 @@
 
     <sinput sType="text" @sValue="e => value = e" sText="用户名" />
     <h1>{{value}}</h1>
+    <salter sMsg="删除我吗??" @sNo="cancelHandle" @sYes="successHandle"/>
     
     
     <!-- <stextarea :sLimit="true"><div>hello world</div></stextarea>
@@ -18,16 +19,26 @@
 </template>
 <script>
 import sinput from './components/sinput/sinput.vue'
+import salter from './components/salter/salter.vue'
 
 export default {
   name: "App",
   components: {
-    sinput
+    sinput,
+    salter
   },
   methods: {},
   data() {
     return {
       value: ''
+    }
+  },
+  methods:{
+    cancelHandle(e) {
+      console.log(e)
+    },
+    successHandle(e) {
+      console.log(e)
     }
   },
   mounted() {},

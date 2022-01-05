@@ -3,6 +3,7 @@ import schatbox from './components/schatbox/schatbox.vue'
 import smovediv from './components/smovediv/smovediv.vue'
 import sinput from './components/sinput/sinput.vue'
 import savatar from './components/savatar/savatar.vue'
+import salter from './components/salter/salter.vue'
 
 const components = [
     sloading,
@@ -10,6 +11,7 @@ const components = [
     smovediv,
     sinput,
     savatar,
+    salter,
 ]
 
 const install = function(vue,opts={}) {
