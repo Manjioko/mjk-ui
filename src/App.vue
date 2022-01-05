@@ -8,7 +8,7 @@
 
     <!-- <sinput sType="text" @sValue="e => value = e" sText="用户名" /> -->
     <!-- <h1>{{value}}</h1> -->
-    <salter sMsg="删除我吗??" @sNo="cancelHandle" @sYes="successHandle"/>
+    <s-alter sMsg="删除我吗??" @sNo="cancelHandle" @sYes="successHandle"/>
     
     
     <!-- <stextarea :sLimit="true"><div>hello world</div></stextarea>
@@ -18,14 +18,14 @@
   </div>
 </template>
 <script>
-import sinput from './components/sinput/sinput.vue'
-import salter from './components/salter/salter.vue'
+// import sinput from './components/sinput/sinput.vue'
+// import salter from './components/salter/salter.vue'
 
 export default {
   name: "App",
   components: {
-    sinput,
-    salter
+    // sinput,
+    // salter
   },
   methods: {},
   data() {

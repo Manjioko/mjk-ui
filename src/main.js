@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import App from './App.vue'
-import index from './index'
-Vue.use(index)
+import swallowui from "swallow-ui"
+// import index from './index'
+// Vue.use(index)
 // import mjkui from 'mjkui'
-// Vue.use(mjkui)
-
+Vue.use(swallowui)
+console.log(swallowui)
 // eventBus
 Vue.prototype.$bus = new Vue()
 
